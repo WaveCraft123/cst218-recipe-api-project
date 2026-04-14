@@ -20,6 +20,23 @@ app.get("/", (req, res) => {
   res.status(200).json({ message: "The Air Fryer Project is running" });
 });
 
+// More specific health check
+app.get("/health", (req, res) => {
+  const dbState = mongoose.connection.readyState;
+
+  const states = {
+    0: "disconnected",
+    1: "connected",
+    2: "connecting",
+    3: "disconnecting"
+  };
+
+  res.status(200).json({
+    status: "ok",
+    db: states[dbState],
+  });
+});
+
 // Connect to MongoDB
 mongoose
   .connect(process.env.MONGO_URI)
