@@ -1,10 +1,12 @@
-# CST218 Assignment 16 Starter Pack — User-Owned Routes
+# CST218 Air Fryer Recipe Project
 
-This starter pack demonstrates:
+This is a project I created for my CST-218 college course. After creating an account users are able to create and/or change/delete recipes saved to their account. This is similar to a personal cookbook.
+
+This project has:
 - Register + login that returns a token (JWT)
 - Auth middleware (Bearer token)
-- A protected /profile route
-- A user-owned CRUD router for /entries
+- A protected /profile route to show if logged in
+- A user-owned CRUD router for /recipes and /receipes/:id
 
 ## Setup
 1. Install dependencies:
@@ -17,4 +19,9 @@ This starter pack demonstrates:
 - POST /register
 - POST /login   -> returns token
 - GET  /profile (protected)
-- CRUD: /recipes (all protected, ownership enforced)
+
+- GET /recipes (protected)
+- GET /recipes/:id (protected, requires recipe id)
+- POST /recipes (protected)
+- PUT /recipes/:id (protected, requires recipe id)
+- DELETE /recipes/:id (protected, requires recipe id)
