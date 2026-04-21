@@ -2,7 +2,29 @@ const Recipe = require("../models/Recipe");
 
 async function getAllRecipes(req, res) {
     try {
-        const recipes = await Recipe.find({ userId: req.userId }).sort({ createdAt: -1 });
+        const { sort } = req.query;
+        let sortVar;
+
+        if (!sort) {
+            sortVar = { createdAt: -1 }; 
+
+        } else if (sort === "newest") {
+            sortVar = { createdAt: -1 };
+
+        } else if (sort === "oldest") {
+            sortVar = { createdAt: 1 };
+
+        } else if (sort === "alpha") {
+            sortVar = { name: 1};
+            
+        } else {
+            return res.status(400).json({
+                error: "Invalid sort parameter",
+                validOptions: ["newest", "oldest", "alpha"]
+            });
+        }
+
+        const recipes = await Recipe.find({ userId: req.userId }).sort(sortVar);
 
         return res.status(200).json({ 
             message: "Your recipes", 

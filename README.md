@@ -43,3 +43,6 @@ This project has:
 6. View all user owned recipes at GET /recipes or a specific recipe at /recipes/:id, :id being replaced with the id of the specific recipe (automatically created after creating a recipe).
 7. PUT /recipes/:id will change a field value listed in the JSON body, such as { "name" : "NEW_RECIPE_NAME "} OR { "instructions" : "NEW_RECIPE_INSTRUCTIONS" }. 
 8. To delete a recipe simply do DELETE /recipes/:id and the specific recipe will be deleted. 
+
+## New Features
+- Added a new sort query parameter. For the GET /recipes route you can sort by "newest", "oldest", or "alpha" (alphabetically), such as doing /recipes?sort=oldest or /recipes?sort=alpha. If no sort parameter is added, the results will be sorted by newest by default. Putting in an incorrect sort parameter will give a 400 error message. 
